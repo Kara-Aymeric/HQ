@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="kara_retailer_product_template_form_view" model="ir.ui.view">
+        <field name="name">kara.retailer.product.template.form.view</field>
+        <field name="model">product.template</field>
+        <field name="inherit_id" ref="product.product_template_form_view" />
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='product_variant_count']" position="after">
+                <field name="company_accepts_promotion" invisible="1"/>
+            </xpath>
+            <div name="options" position="inside">
+                <span class="d-inline-block" attrs="{'invisible':[('company_accepts_promotion','=',False)]}">
+                    <field name="is_promotion" />
+                    <label for="is_promotion" />
+                    <field name="warning_discount_info" readonly="1" style="color: #FF0000;"/>
+                </span>
+            </div>
+            <xpath expr="//page[@name='general_information']//group[1]" position="after">
+                <group name="declare_promotion" string="Promotion"
+                       attrs="{'invisible':[('company_accepts_promotion','=', False)]}">
+                    <group>
+                        <field name="discount_type" attrs="{'required': [('company_accepts_promotion','=', True), ('is_promotion', '=', True)]}" />
+                        <field name="percentage_value" attrs="{'required': [('company_accepts_promotion','=', True), ('is_promotion', '=', True)], 'invisible': [('discount_type', '!=', 'percentage')]}"/>
+                    </group>
+                    <group>
+                        <field name="begin_date" attrs="{'required': [('company_accepts_promotion','=', True), ('is_promotion', '=', True)]}" />
+                        <field name="end_date" attrs="{'required': [('company_accepts_promotion','=', True), ('is_promotion', '=', True)]}" />
+                        <field name="discount" attrs="{'readonly': [('discount_type', '!=', 'fixed')]}" widget="monetary" />
+                        <field name="new_price" readonly="1" widget="monetary" attrs="{'invisible':[('is_promotion','=',False)]}" />
+                    </group>
+                </group>
+            </xpath>
+            <xpath expr="//page[last()]" position="after">
+                <page string="Promotion history" name="product_promotion_history" attrs="{'invisible':[('company_accepts_promotion','=',False)]}">
+                    <group string="Promotion history">
+                        <field name="product_promotion_ids" nolabel="1">
+                            <tree create="false" editable="bottom">
+                                <field name="begin_date" required="True"/>
+                                <field name="end_date" required="True"/>
+                                <field name="discount_type" required="True"/>
+                                <field name="percentage_value" attrs="{'invisible':[('discount_type','!=','percentage')]}" />
+                                <field name="discount" attrs="{'readonly': [('discount_type', '!=', 'fixed')]}" widget="monetary" />
+                            </tree>
+                        </field>
+                    </group>
+                </page>
+            </xpath>
+        </field>
+    </record>
+</odoo>
