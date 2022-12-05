@@ -68,7 +68,7 @@ class ProductTemplate(models.Model):
 
     @api.onchange('is_promotion')
     def _onchange_is_promotion(self):
-        if not self.is_promotion:
+        if not self.is_promotion and self.discount_type:
             self.write({
                 'begin_date': False,
                 'end_date': False,
