@@ -43,6 +43,8 @@ class ProductTemplate(models.Model):
     def _compute_new_price(self):
         for rec in self:
             if rec.is_promotion:
+                if rec.list_price < rec.discount:
+                    raise ValidationError("Le prix de vente ne peut pas être inférieur à la remise sur l'article")
                 rec.new_price = rec.list_price - rec.discount
             else:
                 rec.new_price = 0
