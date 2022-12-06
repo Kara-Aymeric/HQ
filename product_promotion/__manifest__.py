@@ -1,11 +1,11 @@
 # -*- coding: utf-8 -*-
 {
     'name': "Promotion sur article",
-    'summary': """
+    'summary': """ Gestion des promotions sur article pour l'entreprise Kara """,
+    'description': """
         Le module propose de configurer une période de promotion au niveau de la configuration d'un article. 
         La promotion sera alors appliquée à la ligne de vente lors de la saisie d'un devis.
     """,
-    'description': """ """,
     'author': "HENNION Kévin",
     'website': "https://hennet-solutions.fr",
     'category': 'Sales/Sales',
