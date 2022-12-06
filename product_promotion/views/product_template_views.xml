@@ -12,8 +12,11 @@
                 <span class="d-inline-block" attrs="{'invisible':[('company_accepts_promotion','=',False)]}">
                     <field name="is_promotion" />
                     <label for="is_promotion" />
-                    <field name="warning_discount_info" readonly="1" style="color: #FF0000;"/>
+                    <field name="future_promotion_info" readonly="1" style="color: #00008B;"/>
                 </span>
+                <p class="d-inline-block" attrs="{'invisible':[('company_accepts_promotion','=',False)]}">
+                    <field name="warning_discount_info" readonly="1" style="color: #FF0000;"/>
+                </p>
             </div>
             <xpath expr="//page[@name='general_information']//group[1]" position="after">
                 <group name="declare_promotion" string="Promotion"

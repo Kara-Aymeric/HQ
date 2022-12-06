@@ -94,7 +94,9 @@ msgid "ID"
 msgstr ""
 
 #. module: product_promotion
+#: model:ir.model.fields,field_description:product_promotion.field_product_product__future_promotion_info
 #: model:ir.model.fields,field_description:product_promotion.field_product_product__warning_discount_info
+#: model:ir.model.fields,field_description:product_promotion.field_product_template__future_promotion_info
 #: model:ir.model.fields,field_description:product_promotion.field_product_template__warning_discount_info
 msgid "Information"
 msgstr "Information"
