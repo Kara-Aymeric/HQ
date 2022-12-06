@@ -11,6 +11,7 @@ class ProductTemplate(models.Model):
     _inherit = 'product.template'
 
     is_promotion = fields.Boolean(string="Is on promotion")
+    future_promotion_info = fields.Char(string="Information", compute="_compute_future_promotion_info", copy=False)
     product_promotion_ids = fields.One2many('product.promotion', 'product_template_id', string='Promotions')
     company_accepts_promotion = fields.Boolean(string="The company accepts promotions",
                                                related="company_id.accept_promotion")
@@ -29,6 +30,15 @@ class ProductTemplate(models.Model):
                              help="New sale price by applying the discount on the product", tracking=True)
 
     warning_discount_info = fields.Char(string="Information", store=False, copy=False)
+
+    @api.depends('is_promotion', 'begin_date')
+    def _compute_future_promotion_info(self):
+        for rec in self:
+            future_promotion_info = ""
+            if rec.is_promotion and rec.begin_date:
+                if datetime.date.today() < rec.begin_date:
+                    future_promotion_info = "Une future promotion est configurée pour cet article"
+            rec.future_promotion_info = future_promotion_info
 
     @api.depends('discount_type', 'percentage_value', 'list_price')
     def _compute_discount(self):
