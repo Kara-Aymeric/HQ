@@ -11,6 +11,7 @@ class ProductTemplate(models.Model):
     _inherit = 'product.template'
 
     is_promotion = fields.Boolean(string="Is on promotion")
+    future_promotion_info = fields.Char(string="Information", compute="_compute_future_promotion_info", copy=False)
     product_promotion_ids = fields.One2many('product.promotion', 'product_template_id', string='Promotions')
     company_accepts_promotion = fields.Boolean(string="The company accepts promotions",
                                                related="company_id.accept_promotion")
@@ -30,6 +31,15 @@ class ProductTemplate(models.Model):
 
     warning_discount_info = fields.Char(string="Information", store=False, copy=False)
 
+    @api.depends('is_promotion', 'begin_date')
+    def _compute_future_promotion_info(self):
+        for rec in self:
+            future_promotion_info = ""
+            if rec.is_promotion and rec.begin_date:
+                if datetime.date.today() < rec.begin_date:
+                    future_promotion_info = "Une future promotion est configurée pour cet article"
+            rec.future_promotion_info = future_promotion_info
+
     @api.depends('discount_type', 'percentage_value', 'list_price')
     def _compute_discount(self):
         for rec in self:
@@ -43,6 +53,8 @@ class ProductTemplate(models.Model):
     def _compute_new_price(self):
         for rec in self:
             if rec.is_promotion:
+                if rec.list_price < rec.discount:
+                    raise ValidationError("Le prix de vente ne peut pas être inférieur à la remise sur l'article")
                 rec.new_price = rec.list_price - rec.discount
             else:
                 rec.new_price = 0
@@ -68,7 +80,7 @@ class ProductTemplate(models.Model):
 
     @api.onchange('is_promotion')
     def _onchange_is_promotion(self):
-        if not self.is_promotion:
+        if not self.is_promotion and self.discount_type:
             self.write({
                 'begin_date': False,
                 'end_date': False,
