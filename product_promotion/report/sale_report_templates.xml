@@ -2,18 +2,30 @@
 <odoo>
     <template id="kara_retailer_report_saleorder_document" inherit_id="sale.report_saleorder_document">
         <xpath expr="//t[@t-set='display_discount']" position="after">
-            <t t-set="display_discount_fixed" t-value="any([l.discount_fixed for l in doc.order_line])"/>
+            <t t-set="display_discount_product" t-value="any([l.discount_product for l in doc.order_line])"/>
         </xpath>
         <th name="th_discount" position="after">
-            <th t-if="display_discount_fixed" class="text-right" groups="product.group_discount_per_so_line">
-                <span>Fixed discount</span>
+            <th t-if="display_discount_product" class="text-right" groups="product.group_discount_per_so_line">
+                <span>Remise / Article</span>
+            </th>
+            <th t-if="display_discount_product" class="text-right" groups="product.group_discount_per_so_line">
+                <span>Remise totale</span>
             </th>
         </th>
         <xpath expr="//td[@t-if='display_discount']" position="after">
-            <td t-if="display_discount_fixed" class="text-right" groups="product.group_discount_per_so_line">
-                <span t-field="line.discount_fixed" />
+            <td t-if="display_discount_product" class="text-right" groups="product.group_discount_per_so_line">
+                <t t-if="line.discount_type == 'fixed'">
+                    <span t-esc="'%.2f'% line.discount_product"/> <span t-field="doc.currency_id.symbol"/>
+                </t>
+                <t t-else="">
+                    <span><t t-esc="line.discount_product"/> %</span>
+                </t>
+            </td>
+            <td t-if="display_discount_product" class="text-right" groups="product.group_discount_per_so_line">
+                <span t-esc="'%.2f'% line.total_discount"/> <span t-field="doc.currency_id.symbol"/>
             </td>
         </xpath>
+
         <xpath expr="//div[@name='total']/div/table" position="inside">
             <!--Total amount discounted -->
             <tr class="o_total">
