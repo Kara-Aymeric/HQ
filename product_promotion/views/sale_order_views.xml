@@ -5,12 +5,19 @@
         <field name="model">sale.order</field>
         <field name="inherit_id" ref="sale.view_order_form" />
         <field name="arch" type="xml">
-            <xpath expr="//field[@name='order_line']/form//label[@for='discount']" position="after">
+<!--            <xpath expr="//field[@name='order_line']/form//label[@for='discount']" position="after">
                 <field name="discount_fixed" groups="product.group_discount_per_so_line" />
+            </xpath>-->
+            <xpath expr="//field[@name='order_line']/tree/field[@name='tax_id']" position="before">
+                <xpath expr="//field[@name='order_line']/tree/field[@name='discount']" position="move"/>
+<!--                <field name="discount_fixed" groups="product.group_discount_per_so_line" />-->
             </xpath>
-            <xpath expr="//field[@name='order_line']/tree/field[@name='discount']" position="after">
-                <field name="discount_fixed" groups="product.group_discount_per_so_line" />
+
+            <!-- Change label discount -->
+            <xpath expr="//field[@name='order_line']/tree/field[@name='discount']" position="attributes">
+                <attribute name="string">Remise / Article</attribute>
             </xpath>
+
             <xpath expr="//group[@name='sale_total']/field[@name='tax_totals_json']" position="after">
                 <field name="amount_discount" string="Including discount of" groups="product.group_discount_per_so_line" />
             </xpath>
