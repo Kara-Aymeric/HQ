@@ -12,7 +12,7 @@
     'version': '15.0.22.11.16',
     'license': "LGPL-3",
     'installable': True,
-    'depends': ['base', 'sale'],
+    'depends': ['sale_management'],
     'data': [
         'data/product_template_cron.xml',
         'report/sale_report_templates.xml',
