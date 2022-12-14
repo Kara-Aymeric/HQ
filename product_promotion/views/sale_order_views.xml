@@ -10,7 +10,7 @@
             </xpath>
 
             <xpath expr="//field[@name='order_line']/tree/field[@name='tax_id']" position="before">
-                <field name="discount_type" />
+                <field name="discount_type" groups="product.group_discount_per_so_line" />
                 <field name="discount_product" groups="product.group_discount_per_so_line" optional="show"
                        attrs="{'required':[('discount_type','!=',False)], 'readonly':[('discount_type','=',False)]}"/>
                 <field name="total_discount" groups="product.group_discount_per_so_line" optional="show" readonly="1"/>
