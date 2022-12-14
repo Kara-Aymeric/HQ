@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 15.0+e\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-11-25 13:05+0000\n"
-"PO-Revision-Date: 2022-11-25 13:05+0000\n"
+"POT-Creation-Date: 2022-12-14 07:33+0000\n"
+"PO-Revision-Date: 2022-12-14 07:33+0000\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -17,13 +17,30 @@ msgstr ""
 
 #. module: product_promotion
 #: model_terms:ir.ui.view,arch_db:product_promotion.kara_retailer_report_saleorder_document
-msgid "<span>Fixed discount</span>"
-msgstr "<span>Remise fixe</span>"
+msgid "<span>Discount / Product</span>"
+msgstr "<span>Remise / Article</span>"
+
+#. module: product_promotion
+#: model_terms:ir.ui.view,arch_db:product_promotion.kara_retailer_report_saleorder_document
+msgid "<span>Total discount</span>"
+msgstr "<span>Remise totale</span>"
 
 #. module: product_promotion
 #: model_terms:ir.ui.view,arch_db:product_promotion.kara_retailer_report_saleorder_document
 msgid "<strong>Including discount of</strong>"
 msgstr "<strong>Dont remise de</strong>"
+
+#. module: product_promotion
+#: model:ir.model.fields,field_description:product_promotion.field_res_company__accept_promotion
+msgid "Allows to use the promotion module on product"
+msgstr "Permet d'utiliser le module promotion sur article"
+
+#. module: product_promotion
+#: model:ir.model.fields,field_description:product_promotion.field_product_product__begin_date
+#: model:ir.model.fields,field_description:product_promotion.field_product_promotion__begin_date
+#: model:ir.model.fields,field_description:product_promotion.field_product_template__begin_date
+msgid "Begin date"
+msgstr "Date de début"
 
 #. module: product_promotion
 #: model:ir.model,name:product_promotion.model_res_company
@@ -41,11 +58,42 @@ msgid "Created on"
 msgstr "Crée le"
 
 #. module: product_promotion
-#: model:ir.model.fields,field_description:product_promotion.field_product_product__begin_date
-#: model:ir.model.fields,field_description:product_promotion.field_product_promotion__begin_date
-#: model:ir.model.fields,field_description:product_promotion.field_product_template__begin_date
-msgid "Begin date"
-msgstr "Date de début"
+#: model:ir.model.fields,field_description:product_promotion.field_sale_order_line__discount_product
+msgid "Discount / Product"
+msgstr "Remise / Article"
+
+#. module: product_promotion
+#: model:ir.model.fields,field_description:product_promotion.field_sale_order__amount_discount
+msgid "Discount total"
+msgstr "Total de la remise"
+
+#. module: product_promotion
+#: model:ir.model.fields,field_description:product_promotion.field_product_product__discount_type
+#: model:ir.model.fields,field_description:product_promotion.field_product_promotion__discount_type
+#: model:ir.model.fields,field_description:product_promotion.field_product_template__discount_type
+#: model:ir.model.fields,field_description:product_promotion.field_sale_order_line__discount_type
+msgid "Discount type"
+msgstr "Type de remise"
+
+#. module: product_promotion
+#: model:ir.model.fields,help:product_promotion.field_product_product__discount
+#: model:ir.model.fields,help:product_promotion.field_product_promotion__discount
+#: model:ir.model.fields,help:product_promotion.field_product_template__discount
+msgid "Discount value calculated automatically if discount type is percentage"
+msgstr ""
+"Valeur de la remise calculée automatiquement si le type de remise est "
+"pourcentage"
+
+#. module: product_promotion
+#: model:ir.model.fields,field_description:product_promotion.field_product_product__new_price
+#: model:ir.model.fields,field_description:product_promotion.field_product_template__new_price
+msgid "Discounted sale price"
+msgstr "Prix de vente remisé"
+
+#. module: product_promotion
+#: model:ir.model.fields,field_description:product_promotion.field_product_promotion__display_name
+msgid "Display Name"
+msgstr "Nom à afficher"
 
 #. module: product_promotion
 #: model:ir.model.fields,field_description:product_promotion.field_product_product__end_date
@@ -55,38 +103,11 @@ msgid "End date"
 msgstr "Date de fin"
 
 #. module: product_promotion
-#: model:ir.model.fields,field_description:product_promotion.field_product_promotion__display_name
-msgid "Display Name"
-msgstr "Nom à afficher"
-
-#. module: product_promotion
-#: model_terms:ir.ui.view,arch_db:product_promotion.kara_retailer_view_order_form
-msgid "Including discount of"
-msgstr "Dont remise de"
-
-#. module: product_promotion
-#: model:ir.model.fields,field_description:product_promotion.field_product_product__is_promotion
-#: model:ir.model.fields,field_description:product_promotion.field_product_template__is_promotion
-msgid "Is on promotion"
-msgstr "Est en promotion"
-
-#. module: product_promotion
 #: model:ir.model.fields.selection,name:product_promotion.selection__product_promotion__discount_type__fixed
 #: model:ir.model.fields.selection,name:product_promotion.selection__product_template__discount_type__fixed
+#: model:ir.model.fields.selection,name:product_promotion.selection__sale_order_line__discount_type__fixed
 msgid "Fixed"
 msgstr "Fixe"
-
-#. module: product_promotion
-#: model_terms:ir.ui.view,arch_db:product_promotion.kara_retailer_product_template_form_view
-msgid "Promotion history"
-msgstr "Historique des promotions"
-
-#. module: product_promotion
-#: model:ir.model,name:product_promotion.model_product_promotion
-msgid ""
-"Promotion history. No impact on related articles and models"
-msgstr ""
-"Historique des promotions. Aucune incidence sur les articles et les modèles associés"
 
 #. module: product_promotion
 #: model:ir.model.fields,field_description:product_promotion.field_product_promotion__id
@@ -94,18 +115,23 @@ msgid "ID"
 msgstr ""
 
 #. module: product_promotion
+#: model_terms:ir.ui.view,arch_db:product_promotion.kara_retailer_view_order_form
+msgid "Including discount of"
+msgstr "Dont remise de"
+
+#. module: product_promotion
 #: model:ir.model.fields,field_description:product_promotion.field_product_product__future_promotion_info
 #: model:ir.model.fields,field_description:product_promotion.field_product_product__warning_discount_info
 #: model:ir.model.fields,field_description:product_promotion.field_product_template__future_promotion_info
 #: model:ir.model.fields,field_description:product_promotion.field_product_template__warning_discount_info
 msgid "Information"
-msgstr "Information"
+msgstr ""
 
 #. module: product_promotion
-#: model:ir.model.fields,field_description:product_promotion.field_product_product__company_accepts_promotion
-#: model:ir.model.fields,field_description:product_promotion.field_product_template__company_accepts_promotion
-msgid "The company accepts promotions"
-msgstr "La société accepte les promotions"
+#: model:ir.model.fields,field_description:product_promotion.field_product_product__is_promotion
+#: model:ir.model.fields,field_description:product_promotion.field_product_template__is_promotion
+msgid "Is on promotion"
+msgstr "Est en promotion"
 
 #. module: product_promotion
 #: model:ir.model.fields,field_description:product_promotion.field_product_promotion____last_update
@@ -123,6 +149,38 @@ msgid "Last Updated on"
 msgstr "Dernière mise à jour le"
 
 #. module: product_promotion
+#: model:ir.model.fields,help:product_promotion.field_product_product__new_price
+#: model:ir.model.fields,help:product_promotion.field_product_template__new_price
+msgid "New sale price by applying the discount on the product"
+msgstr "Nouveau prix de vente en appliquant la remise sur l'article"
+
+#. module: product_promotion
+#: model:ir.model.fields.selection,name:product_promotion.selection__product_promotion__discount_type__percentage
+#: model:ir.model.fields.selection,name:product_promotion.selection__product_template__discount_type__percentage
+#: model:ir.model.fields.selection,name:product_promotion.selection__sale_order_line__discount_type__percentage
+msgid "Percentage"
+msgstr "Pourcentage"
+
+#. module: product_promotion
+#: model:ir.model.fields,field_description:product_promotion.field_product_product__percentage_value
+#: model:ir.model.fields,field_description:product_promotion.field_product_promotion__percentage_value
+#: model:ir.model.fields,field_description:product_promotion.field_product_template__percentage_value
+msgid "Percentage value"
+msgstr "Valeur pourcentage"
+
+#. module: product_promotion
+#: model:ir.model,name:product_promotion.model_product_template
+msgid "Product Template"
+msgstr "Modèle d'article"
+
+#. module: product_promotion
+#: model:ir.model.fields,field_description:product_promotion.field_product_product__discount
+#: model:ir.model.fields,field_description:product_promotion.field_product_promotion__discount
+#: model:ir.model.fields,field_description:product_promotion.field_product_template__discount
+msgid "Product discount"
+msgstr "Remise sur l'article"
+
+#. module: product_promotion
 #: model:ir.model.fields,field_description:product_promotion.field_product_promotion__product_template_id
 msgid "Product template"
 msgstr "Modèle de produit"
@@ -133,37 +191,21 @@ msgid "Product template associated with the promotion"
 msgstr "Modèle de produit associé à la promotion"
 
 #. module: product_promotion
-#: model:ir.model.fields,help:product_promotion.field_product_product__new_price
-#: model:ir.model.fields,help:product_promotion.field_product_template__new_price
-msgid "New sale price by applying the discount on the product"
-msgstr "Nouveau prix de vente en appliquant la remise sur l'article"
-
-#. module: product_promotion
-#: model:ir.model.fields,field_description:product_promotion.field_res_company__accept_promotion
-msgid "Allows to use the promotion module on product"
-msgstr "Permet d'utiliser le module promotion sur article"
-
-#. module: product_promotion
-#: model:ir.model.fields.selection,name:product_promotion.selection__product_promotion__discount_type__percentage
-#: model:ir.model.fields.selection,name:product_promotion.selection__product_template__discount_type__percentage
-msgid "Percentage"
-msgstr "Pourcentage"
-
-#. module: product_promotion
-#: model:ir.model.fields,field_description:product_promotion.field_product_product__new_price
-#: model:ir.model.fields,field_description:product_promotion.field_product_template__new_price
-msgid "Discounted sale price"
-msgstr "Prix de vente remisé"
-
-#. module: product_promotion
-#: model:ir.model,name:product_promotion.model_product_template
-msgid "Product Template"
-msgstr "Modèle d'article"
+#: model_terms:ir.ui.view,arch_db:product_promotion.kara_retailer_product_template_form_view
+msgid "Promotion"
+msgstr ""
 
 #. module: product_promotion
 #: model_terms:ir.ui.view,arch_db:product_promotion.kara_retailer_product_template_form_view
-msgid "Promotion"
-msgstr "Promotion"
+msgid "Promotion history"
+msgstr "Historique des promotions"
+
+#. module: product_promotion
+#: model:ir.model,name:product_promotion.model_product_promotion
+msgid "Promotion history. No impact on related articles and models"
+msgstr ""
+"Historique des promotions. Aucune incidence sur les articles et les modèles "
+"associés"
 
 #. module: product_promotion
 #: model:ir.actions.server,name:product_promotion.product_template_cron_ir_actions_server
@@ -176,24 +218,7 @@ msgstr "Promotion sur article: vérifie si la promotion doit être désactivée"
 #: model:ir.model.fields,field_description:product_promotion.field_product_product__product_promotion_ids
 #: model:ir.model.fields,field_description:product_promotion.field_product_template__product_promotion_ids
 msgid "Promotions"
-msgstr "Promotions"
-
-#. module: product_promotion
-#: model:ir.model.fields,field_description:product_promotion.field_sale_order_line__discount_fixed
-msgid "Fixed discount"
-msgstr "Remise fixe"
-
-#. module: product_promotion
-#: model:ir.model.fields,help:product_promotion.field_sale_order_line__discount_fixed
-msgid "Fixed discount on the product based on the Unit Price"
-msgstr "Remise fixe sur l'article en fonction du Prix Unitaire"
-
-#. module: product_promotion
-#: model:ir.model.fields,field_description:product_promotion.field_product_product__discount
-#: model:ir.model.fields,field_description:product_promotion.field_product_promotion__discount
-#: model:ir.model.fields,field_description:product_promotion.field_product_template__discount
-msgid "Product discount"
-msgstr "Remise sur l'article"
+msgstr ""
 
 #. module: product_promotion
 #: model:ir.model,name:product_promotion.model_sale_order
@@ -206,31 +231,24 @@ msgid "Sales Order Line"
 msgstr "Ligne de bons de commande"
 
 #. module: product_promotion
-#: model:ir.model.fields,field_description:product_promotion.field_sale_order__amount_discount
-msgid "Discount total"
-msgstr "Total de la remise"
+#: model:ir.model.fields,field_description:product_promotion.field_product_product__company_accepts_promotion
+#: model:ir.model.fields,field_description:product_promotion.field_product_template__company_accepts_promotion
+msgid "The company accepts promotions"
+msgstr "La société accepte les promotions"
 
 #. module: product_promotion
-#: model:ir.model.fields,field_description:product_promotion.field_product_product__discount_type
-#: model:ir.model.fields,field_description:product_promotion.field_product_promotion__discount_type
-#: model:ir.model.fields,field_description:product_promotion.field_product_template__discount_type
-msgid "Discount type"
-msgstr "Type de remise"
-
-#. module: product_promotion
-#: code:addons/product_promotion/models/sale_order_line.py:0
-#, python-format
-msgid "Only one discount per item line is possible. Please modify"
-msgstr "Une seule remise par ligne d'article est possible. Merci de modifier"
-
-#. module: product_promotion
-#: model:ir.model.fields,help:product_promotion.field_product_product__discount
-#: model:ir.model.fields,help:product_promotion.field_product_promotion__discount
-#: model:ir.model.fields,help:product_promotion.field_product_template__discount
+#: model:ir.model.fields,help:product_promotion.field_sale_order_line__discount_product
 msgid ""
-"Discount value calculated automatically if discount type is percentage"
+"The discount is percentage or fixed depending on the configuration of the "
+"article."
 msgstr ""
-"Valeur de la remise calculée automatiquement si le type de remise est pourcentage"
+"La remise est en pourcentage ou fixe selon la configuration de "
+"l'article."
+
+#. module: product_promotion
+#: model:ir.model.fields,field_description:product_promotion.field_sale_order_line__total_discount
+msgid "Total discount"
+msgstr "Remise totale"
 
 #. module: product_promotion
 #: model:ir.model.fields,help:product_promotion.field_product_product__percentage_value
@@ -238,10 +256,3 @@ msgstr ""
 #: model:ir.model.fields,help:product_promotion.field_product_template__percentage_value
 msgid "Value used to calculate the discount on the product"
 msgstr "Valeur permettant de calculer la remise sur l'article"
-
-#. module: product_promotion
-#: model:ir.model.fields,field_description:product_promotion.field_product_product__percentage_value
-#: model:ir.model.fields,field_description:product_promotion.field_product_promotion__percentage_value
-#: model:ir.model.fields,field_description:product_promotion.field_product_template__percentage_value
-msgid "Percentage value"
-msgstr "Valeur pourcentage"
