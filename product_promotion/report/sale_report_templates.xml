@@ -6,10 +6,10 @@
         </xpath>
         <th name="th_discount" position="after">
             <th t-if="display_discount_product" class="text-right" groups="product.group_discount_per_so_line">
-                <span>Remise / Article</span>
+                <span>Discount / Product</span>
             </th>
             <th t-if="display_discount_product" class="text-right" groups="product.group_discount_per_so_line">
-                <span>Remise totale</span>
+                <span>Total discount</span>
             </th>
         </th>
         <xpath expr="//td[@t-if='display_discount']" position="after">

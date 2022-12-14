@@ -7,11 +7,11 @@ class SaleOrderLine(models.Model):
     _inherit = "sale.order.line"
 
     discount_type = fields.Selection(
-        [('percentage', 'Percentage'), ('fixed', 'Fixed')], string="Type remise", store=True)
-    discount_product = fields.Float(string="Remise / Article", digits="Discount", default=0.0,
-                                    help="La remise est de type pourcentage ou fixe "
-                                         "selon la configuration de l'article.", store=True)
-    total_discount = fields.Monetary(string="Remise totale", store=True)
+        [('percentage', 'Percentage'), ('fixed', 'Fixed')], string="Discount type")
+    discount_product = fields.Float(string="Discount / Product", digits="Discount", default=0.0,
+                                    help="The discount is percentage or fixed depending "
+                                         "on the configuration of the article.")
+    total_discount = fields.Monetary(string="Total discount")
 
     @api.depends('product_uom_qty', 'discount', 'price_unit', 'tax_id', 'discount_type', 'discount_product')
     def _compute_amount(self):
@@ -56,5 +56,5 @@ class SaleOrderLine(models.Model):
 
     # def _prepare_invoice_line(self, **kwargs):
     #     res = super()._prepare_invoice_line(**kwargs)
-    #     res.update({"discount_fixed": self.discount_fixed})
+    #     res.update({"discount_product": self.discount_product})
     #     return res
