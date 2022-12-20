@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="view_spacefill_stock_package_type_form_inherits" model="ir.ui.view">
+        <field name="name">stock.package.type.form</field>
+        <field name="model">stock.package.type</field>
+        <field name="inherit_id" ref="stock.stock_package_type_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//form[1]/sheet[1]/group[1]/group[1]/div[@name='max_weight']" position="after">
+                <label for="gross_weight"/>
+                <div class="o_row" name="gross_weight">
+                    <field name="gross_weight"/>
+                </div>
+            </xpath>
+            <xpath expr="//field[@name='barcode']" position="after">
+                <field name="is_spacefill_cardboard_box"/>
+                <field name="is_spacefill_pallet"/>
+            </xpath>
+        </field>
+    </record>
+
+</odoo>

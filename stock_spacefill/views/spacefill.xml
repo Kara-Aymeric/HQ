@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+	<data>
+		<record model="ir.ui.view" id="spacefill_view_form">
+			<field name="name">spacefill_view_form</field>
+			<field name="model">spacefill.config</field>
+			<field name="arch" type="xml">
+				<form string="SpaceFill instance">
+					<sheet>
+						<group>
+							<field name="spacefill_shipper_token"/>
+							<field name="spacefill_lsp_token"/>
+							<field name="spacefill_api_url"/>
+							<field name="spacefill_erp_account_id"/>
+							<field name="spacefill_delay"/>
+						</group>
+					</sheet>
+				</form>
+			</field>
+		</record>
+		<record model="ir.ui.view" id="spacefill_view_tree">
+			<field name="name">spacefill_view_tree</field>
+			<field name="model">spacefill.config</field>
+			<field name="arch" type="xml">
+				<tree string="Sapcefill instance">
+					<field name="spacefill_shipper_token"/>
+					<field name="spacefill_lsp_token"/>
+					<field name="spacefill_api_url" />
+					<field name="spacefill_erp_account_id" />
+				</tree>
+			</field>
+		</record>
+
+		<record id="act_spacefill_form" model="ir.actions.act_window">
+			<field name="name">Configuration Spacefill</field>
+			<field name="res_model">spacefill.config</field>
+			<field name="type">ir.actions.act_window</field>
+<!-- 			<field name="view_type">form</field>
+ -->			<field name="view_mode">tree,form</field>
+		</record>
+  	</data>
+</odoo>
+

@@ -1,0 +1,4 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_spacefill_config,spacefill.config,model_spacefill_config,stock_spacefill.group_spacefill_connector_users,1,1,1,1
+access_spacefill_statut,spacefill.statut,model_spacefill_statut,stock_spacefill.group_spacefill_connector_users,1,1,1,1
+access_spacefill_update,spacefill.update,model_spacefill_update,stock_spacefill.group_spacefill_connector_users,1,1,1,1

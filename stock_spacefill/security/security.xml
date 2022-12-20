@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="stock_spacefill.group_spacefill_connector_users" model="res.groups">
+            <field name="name">Spacefill Connector Users</field>
+        </record>
+    </data>
+</odoo>

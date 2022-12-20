@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <menuitem  id="menu_root_spacefill"  name="SpaceFill" groups="stock_spacefill.group_spacefill_connector_users" sequence="100" />     
+        <menuitem 
+            name="Spacefill"
+            id="spacefill_menu"
+            parent="menu_root_spacefill"
+            sequence="1"
+        />
+        <menuitem id="menu_setup" parent="spacefill_menu" action="act_spacefill_form" name="Setup SpaceFill" sequence="1"/>
+        <menuitem id="menu_spacefill_status" parent="spacefill_menu" action="action_spacefill_status" name="Spacefill Status" sequence="1"/>
+    </data>
+</odoo>

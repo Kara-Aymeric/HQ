@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+    Copyright 2022 Charles-Edouard Toutain | irOkoo
+    License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
+-->
+<odoo>
+    <record id="cron_update_spacefill_statut" model="ir.cron">
+        <field name="name">Spacefill Update Order Statut</field>
+        <field name="active" eval="False"/>
+        <field name="user_id" ref="base.user_root"/>
+        <field name="interval_number">1</field>
+        <field name="interval_type">days</field>
+        <field name="numbercall">-1</field>
+        <field name="doall" eval="False"/>
+        <field name="model_id" ref="model_stock_picking"/>
+        <field name="state">code</field>
+        <field name="code">model.cron_maj_status()</field>
+    </record>
+      <record id="cron_update_spacefill_order" model="ir.cron">
+        <field name="name">Spacefill Update Order</field>
+        <field name="active" eval="False"/>
+        <field name="user_id" ref="base.user_root"/>
+        <field name="interval_number">1</field>
+        <field name="interval_type">days</field>
+        <field name="numbercall">-1</field>
+        <field name="doall" eval="False"/>
+        <field name="model_id" ref="model_spacefill_update"/>
+        <field name="state">code</field>
+        <field name="code">model.update()</field>
+    </record>
+    <record id="cron_update_inventory_from_spacefill" model="ir.cron">
+        <field name="name">Spacefill Update Odoo Inventory</field>
+        <field name="active" eval="False"/>
+        <field name="user_id" ref="base.user_root"/>
+        <field name="interval_number">1</field>
+        <field name="interval_type">days</field>
+        <field name="numbercall">-1</field>
+        <field name="doall" eval="False"/>
+        <field name="model_id" ref="model_product_product"/>
+        <field name="state">code</field>
+        <field name="code">model.cron_update_inventory()</field>
+    </record>
+</odoo>
