@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+	<data>
+		<record model="ir.ui.view" id="spacefill_status_view_form">
+			<field name="name">Spacefill Status Form</field>
+			<field name="model">spacefill.statut</field>
+			<field name="arch" type="xml">
+				<form string="SpaceFill Status">
+					<sheet>
+						<group>
+							<field name="spacefill_statut"/>
+							<field name="state"/>
+						</group>
+                        <notebook>
+                            <page name="workflow" string="Workflow">
+                                <group>
+                                    <field name="is_default_done"/>
+                                    <field name="is_default_cancel"/>
+                                    <field name="is_default_waiting"/>
+                                </group>
+                            </page>
+                        </notebook>
+					</sheet>
+				</form>
+			</field>
+		</record>
+		<record model="ir.ui.view" id="spacefill_status_view_tree">
+			<field name="name">Spacefill Status Tree</field>
+			<field name="model">spacefill.statut</field>
+			<field name="arch" type="xml">
+                <tree string="Sapcefill Status">
+                    <field name="spacefill_statut"/>
+                    <field name="state"/>
+                    <field name="is_default_done"/>
+                    <field name="is_default_cancel"/>
+                    <field name="is_default_waiting"/>
+                </tree>
+			</field>
+		</record>
+
+		<record id="action_spacefill_status" model="ir.actions.act_window">
+			<field name="name">Spacefill Statut</field>
+			<field name="res_model">spacefill.statut</field>
+			<field name="type">ir.actions.act_window</field>
+<!-- 			<field name="view_type">form</field>
+ -->			<field name="view_mode">tree,form</field>
+		</record>
+  	</data>
+</odoo>
+
